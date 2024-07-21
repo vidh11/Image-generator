@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Playfair+Display&display=swap');
+
+:root {
+    --font-family1: 'Fraunces', serif;
+    /* 300 400 500 600 */
+    --font-family2: 'Montserrat', sans-serif;
+    /* 400 */
+
+    --c1: #0F2C59
+        /*222831*/
+    ;
+    --c2: #EADBC8
+        /*393E46*/
+    ;
+    --c3: #DAC0A3
+        /*00ADB5*/
+    ;
+    --c4: #F8F0E5
+        /*F6F6F6*/
+    ;
+    --c5: #0F2C59;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--c4) !important;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem 0 4rem;
+    font-family: var(--font-family2);
+    height: 7.1875rem;
+}
+
+.website__title {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.website__title .title {
+    margin-top: 0.75em !important;
+}
+
+.website__title .title p {
+    opacity: 85%;
+    position: relative;
+}
+
+.website__title .title p span,
+.website__title .title-500 {
+    color: var(--c3);
+}
+
+.website__title .title p span::after {
+    content: "";
+    position: absolute;
+    width: 2.5px;
+    height: 2.5rem;
+    background-color: var(--c3);
+    right: -8px;
+    top: 0px;
+    animation: blink .7s infinite;
+}
+
+.website__title .title p span.stop-blinking::after {
+    animation: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hamburger {
+    display: none;
+}
+
+.nav-bar ul {
+    display: flex;
+}
+
+.nav-bar ul li a {
+    display: block;
+    color: black;
+    font-size: 1.25rem;
+    padding: .5rem;
+    border-radius: 1rem;
+}
+
+.nav-bar ul li a.active {
+    background-color: var(--c5);
+    color: var(--c4);
+}
+
+.nav-bar ul li a:hover {
+    background-color: rgb(211, 211, 211);
+}
+
+.nav-bar ul li:not(:first-child) a {
+    margin-left: 3.5rem;
+}
+
+header .website__options .option {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem;
+}
+
+header .website__options .option:not(:first-child) {
+    margin-left: 4rem;
+}
+
+main {
+    display: grid;
+    place-content: center;
+    font-family: var(--font-family1);
+    margin: 5rem 0;
+    transition: .5s;
+}
+
+.container {
+    display: flex;
+    gap: 6rem;
+}
+
+.container .line {
+    border-left: 2px solid var(--c3);
+    position: relative;
+}
+
+.container .line::after {
+    content: "Or";
+    background-color: var(--c4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--c3);
+    padding: .3rem;
+    font-size: 2rem;
+    font-family: var(--font-family2);
+}
+
+.container .box {
+    width: 25rem;
+    text-align: center;
+}
+
+.box .choosing__title {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.box .choosing__title .upper__case {
+    text-transform: uppercase;
+    color: var(--c3);
+}
+
+.box .choosing__text {
+    opacity: 70%;
+    margin-bottom: 2rem;
+}
+
+.box form {
+    text-align: start;
+}
+
+.search form input[type=text] {
+    /* margin-left: 1rem; */
+    border-radius: .5rem;
+    border: 1px solid var(--c3);
+    padding: .5rem;
+    margin-bottom: 2rem;
+    margin-top: .5rem;
+    width: 100%;
+    font-family: var(--font-family1);
+}
+
+.box .choosing__btn {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    background-color: var(--c3);
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: .5rem 3rem;
+    font-family: var(--font-family1);
+    color: white;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.box .choosing__btn:hover {
+    background-color: var(--c5);
+}
+
+.img__container {
+    width: 25rem;
+    height: auto;
+    margin: 0 auto 2rem auto;
+    background-color: var(--c5);
+    display: grid;
+    place-content: center;
+}
+
+.img__container p {
+    color: white;
+    font-family: var(--font-family2);
+    font-size: 1.5rem;
+
+}
+
+/* gallery */
+.gallery_container {
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c5);
+    gap: 1rem;
+    /* Added gap between image containers */
+}
+
+.imageContainer {
+    width: calc(33.33% - 1rem);
+    /* Adjust based on the number of images you want in a row */
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* Added margin to separate rows */
+}
+
+.imageContainer .downloadBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    cursor: pointer;
+    position: absolute;
+    place-items: center;
+    border-radius: .4rem;
+    top: calc(4% + .1rem);
+    right: calc(4% + .1rem);
+    color: rgb(255 255 255);
+    background-color: rgb(0 0 0 / 20%);
+    transition: background-color .2s ease-in-out;
+}
+
+.imageContainer .downloadBtn:hover {
+    background-color: rgb(0 0 0 / 40%);
+}
+
+.imageContainer img {
+    width: 100%;
+    max-height: 100%;
+    border-radius: .5rem;
+    object-fit: cover;
+    /* Added object-fit to maintain aspect ratio */
+}
+
+.seeMore {
+    display: block;
+    margin: 1em auto;
+    border: none;
+    background-color: var(--c3);
+    border-radius: 1rem;
+    font-size: 1rem;
+    padding: .5rem 3rem;
+    font-family: var(--font-family1);
+    color: var(--c5);
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.seeMore:hover {
+    background-color: var(--c4);
+}
+
+footer {
+    font-family: var(--font-family1);
+    margin-top: 1em;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+
+@media (max-width: 1068px) {
+    header {
+        padding: 2rem 3rem 0 3rem;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .container .line {
+        border-top: 2px solid var(--c3);
+        border-left: none;
+    }
+
+    .nav-bar {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 920px) {
+    main.active {
+        margin: 13rem 0 5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        display: grid;
+        place-content: center;
+    }
+
+    .hamburger:hover {
+        background-color: rgb(231, 231, 231);
+    }
+
+    .hamburger .row {
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        margin: 3px 0;
+    }
+
+    .nav-bar ul li:not(:first-child) a {
+        margin: 0;
+    }
+
+    .nav-bar {
+        position: absolute;
+        background-color: var(--c3);
+        top: 7.1875rem;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        overflow: hidden;
+        opacity: 0;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .nav-bar ul li {
+        margin-bottom: 1rem;
+    }
+
+    .nav-bar ul li a {
+        padding: .3rem;
+        border-radius: 1rem;
+    }
+
+    .nav-bar ul li a:hover {
+        background-color: rgb(231, 231, 231);
+    }
+
+    .nav-bar.active {
+        opacity: 1;
+        transition: .2s;
+    }
+}
+
+@media (max-width: 650px) {
+    html {
+        font-size: 75%;
+    }
+
+    .container {
+        padding: 0 2rem;
+    }
+
+    .container .box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 495px) {
+    header {
+        padding: 2rem;
+    }
+
+    .icon img {
+        width: 4em;
+    }
+
+    .website__title {
+        gap: .3rem;
+    }
+
+    .website__title h1 {
+        font-size: 1.6rem;
+    }
+
+    .website__title .title {
+        margin-top: 0.75em !important;
+    }
+
+    .website__title .title p span::after {
+        display: none;
+    }
+
+    .website__title .title-500::after {
+        content: "";
+        position: absolute;
+        width: 2.5px;
+        height: 2.2rem;
+        background-color: var(--c3);
+        animation: blink .7s infinite;
+    }
+
+    .website__title .title-500.stop-blinking::after {
+        animation: none;
+    }
+}

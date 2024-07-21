@@ -1,0 +1,128 @@
+<%- include("partials/header.ejs") %>
+
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        .contact-container {
+            margin-top: -1em;
+            background: var(--c3);
+            width: 40vw;
+            padding: 2em 4em 2em 4em;
+            border-radius: 1em;
+            border: 1em solid var(--c1);
+        }
+
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heading p {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* .btn{
+        background-color: var(--c1);
+    } */
+        .result-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1em;
+        }
+
+        @media (max-width: 920px) {
+            .contact-container {
+                width: 80vw;
+                padding: 2em 3em 2em 3em;
+                border: 0.75em solid var(--c1);
+            }
+        }
+    </style>
+    <div class="contact-container">
+        <div class="heading">
+            <p>Contact Me!</p>
+        </div>
+        <form method="POST" id="form">
+
+            <input type="hidden" name="access_key" value="bcdee0ef-ae07-4672-86f9-5bbb2f47039b">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="name" class="form-control" id="name" name="name">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="3" name="message"></textarea>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <div class="result-container">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function (e) {
+            const formData = new FormData(form);
+            e.preventDefault();
+
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            result.innerHTML = "Please wait..."
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.innerHTML = json.message;
+                    } else {
+                        console.log(response);
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function () {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 3000);
+                });
+        });
+    </script>
+
+    <%- include("partials/footer.ejs") %>

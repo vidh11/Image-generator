@@ -1,0 +1,94 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="container">
+        <div class="box">
+            <h1 class="choosing__title">Generate Your Image <span class="upper__case">randomly</span></h1>
+            <p class="choosing__text">Click the button to generate images.</p>
+            <form action="/random" method="post">
+                <input class="choosing__btn" type="submit" value="Generate">
+            </form>
+        </div>
+        <div class="line"></div>
+        <div class="box search">
+            <h1 class="choosing__title">Generate Your Image by <span class="upper__case">searching</span></h1>
+            <p class="choosing__text">Write your query to generate images.</p>
+            <form action="/search" method="post">
+                <input type="text" name="searchWord" id="searchWord"
+                    placeholder="Art, Nature, Cars, Cats and many more!">
+                <input class="choosing__btn" type="submit" value="Generate">
+            </form>
+        </div>
+    </div>
+    </main>
+    <div class="img__container">
+        <% if(locals.link) { %>
+
+            <% //if(link.length==1) { %>
+                <!-- <div class="gallery_container">
+                <div class="imageContainer">
+                    <div class="downloadBtn">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <img src="<%= //link[0] %>" alt="searched-img" data-downloadImg>
+                </div>
+            </div> -->
+
+                <% //} else { %>
+                <% if(link==="NoImage"){ %>
+                    <p>Oops! No images found.</p>
+
+                <% } else { %>
+                 
+                    <div class="gallery_container">
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[0] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[1] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[2] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[3] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[4] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <div class="imageContainer">
+                            <div class="downloadBtn">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <img src="<%= link[5] %>" alt="searched-img" data-downloadImg>
+                        </div>
+                        <!-- <form action="/search" method="post">
+                            <input class="seeMore" type="submit" value="See more..">
+                        </form> -->
+                        <% if (locals.searchWord) { %>
+                            <input class="seeMore" type="submit" value="See more.." data-page="1" data-word="<%= searchWord %>">
+                        <% } %>
+                    </div>
+                <% } %>
+
+        <% } else { %>
+            <p>Your image will be visible here!!</p>
+            <% } %>
+    </div>
+
+
+    <%- include("partials/footer.ejs") %>
